@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,i,c=0,ans=0;
+    cin>>n;
+    string s;
+    cin>>s;
+    for(i=0;i<n;i++)
+    {
+        if(s[i]=='(')
+        {
+            c++;
+        }
+        else
+        {
+            c--;
+        }
+    }
+    if(c==0)
+    {
+        for(i=0;i<n;i++)
+        {
+            if(s[i]=='(')
+            {
+                c++;
+            }
+            else
+            {
+                c--;
+            }
+            if(c<0)
+            {
+                ans++;
+                i++;
+                while(c<0)
+                {
+                    if(s[i]=='(')
+                    {
+                        c++;
+                    }
+                    else
+                    {
+                        c--;
+                    }
+                    i++;
+                    ans++;
+                }
+                i--;
+            }
+        }
+        cout<<ans;
+    }
+    else
+    {
+        cout<<-1;
+    }
+}

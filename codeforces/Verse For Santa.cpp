@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        long long n,k,sum=0;
+        cin>>n>>k;
+        int arr[n],i,maxi=-1,pl=-1,c=0,wir=0,wr=0;
+        for(i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+        for(i=0;i<n;i++)
+        {
+            sum=sum+arr[i];
+            if(i==0)
+            {
+                maxi=arr[i];
+                pl=i;
+            }
+            else
+            {
+                if(maxi<arr[i])
+                {
+                    maxi=arr[i];
+                    pl=i;
+                }
+            }
+            if(sum>k)
+            {
+                break;
+            }
+            c++;
+        }
+        wir=c;
+        sum=0;
+        c=0;
+        for(i=0;i<n;i++)
+        {
+            if(i==pl)
+            {
+                continue;
+            }
+            sum=sum+arr[i];
+            if(sum>k)
+            {
+                break;
+            }
+            c++;
+        }
+        wr=c;
+        if(wr>wir)
+        {
+            cout<<pl+1<<endl;
+        }
+        else
+        {
+            cout<<0<<endl;
+        }
+    }
+}
