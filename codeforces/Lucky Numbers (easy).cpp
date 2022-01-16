@@ -1,0 +1,209 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s;
+    cin>>s;
+    int i,l=s.length(),var=0,pos=-1;
+    for(i=l-1; i>=0; i--)
+    {
+        if(var==1)
+        {
+            s[i]++;
+        }
+        if(s[i]>'7')
+        {
+            s[i]='0';
+            var=1;
+            pos=i;
+        }
+        else
+        {
+            var=0;
+        }
+    }
+    //cout<<s<<endl;
+    if(var==1)
+    {
+        s="1"+s;
+        pos=1;
+    }
+    l=s.length();
+    if(pos!=-1)
+    {
+        for(i=pos; i<l; i++)
+        {
+            s[i]='0';
+        }
+    }
+    if(l%2!=0)
+    {
+        s="1";
+        for(i=0; i<l; i++)
+        {
+            s=s+"0";
+        }
+    }
+    l=s.length();
+    int c=0;
+    for(i=0; i<l; i++)
+    {
+        if(s[i]<='4')
+        {
+            c++;
+        }
+    }
+    int temp=l/2;
+    if(c>=temp)
+    {
+        pos=-1;
+        for(i=0; i<l; i++)
+        {
+            if(s[i]<'4')
+            {
+                pos=i;
+                break;
+            }
+        }
+        if(pos==-1)
+        {
+            var=0;
+            for(i=0; i<l; i++)
+            {
+                if(var<temp)
+                {
+                    if(s[i]<='4')
+                    {
+                        s[i]='4';
+                        var++;
+                    }
+                    else
+                    {
+                        s[i]='7';
+                    }
+                }
+                else
+                {
+                    s[i]='7';
+                }
+            }
+            cout<<s;
+        }
+        else
+        {
+            var=0;
+            temp=l/2;
+            for(i=0; i<l; i++)
+            {
+                if(i<pos)
+                {
+                    if(s[i]<='4')
+                    {
+                        cout<<'4';
+                        var++;
+                    }
+                    else
+                    {
+                        cout<<'7';
+                    }
+                }
+                else
+                {
+                    if(var<temp)
+                    {
+                        cout<<'4';
+                        var++;
+                    }
+                    else
+                    {
+                        cout<<'7';
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        //cout<<"here"<<endl;
+        l=s.length();
+        var=temp-c;
+        pos=-1;
+        //cout<<var<<endl;
+        int vari;
+        for(i=l-1; i>=0; i--)
+        {
+            if(s[i]<'7')
+            {
+                if(s[i]<'4')
+                {
+                    vari=l-i-1;
+                    if(vari>=var)
+                    {
+                        s[i]++;
+                        pos=i+1;
+                        break;
+                    }
+                }
+                else
+                {
+                    vari=l-i-2;
+                    if(vari>=var)
+                    {
+                        s[i]++;
+                        pos=i+1;
+                        break;
+                    }
+                }
+            }
+        }
+        //cout<<pos<<endl;
+        l=s.length();
+        if(pos==-1)
+        {
+            l=l+2;
+            var=l/2;
+            for(i=0; i<var; i++)
+            {
+                cout<<'4';
+            }
+            for(i=0; i<var; i++)
+            {
+                cout<<'7';
+            }
+        }
+        else
+        {
+            //cout<<"here"<<endl;
+            var=0;
+            temp=l/2;
+            for(i=0; i<l; i++)
+            {
+                if(i<pos)
+                {
+                    if(s[i]<='4')
+                    {
+                        cout<<'4';
+                        var++;
+                    }
+                    else
+                    {
+                        cout<<'7';
+                    }
+                }
+                else
+                {
+                    if(var<temp)
+                    {
+                        cout<<'4';
+                        var++;
+                    }
+                    else
+                    {
+                        cout<<'7';
+                    }
+                }
+            }
+        }
+    }
+    //cout<<s;
+}
