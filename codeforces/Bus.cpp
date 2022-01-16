@@ -1,0 +1,107 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    ll a,b,f,k,jc=0,ans=0;
+    cin>>a>>b>>f>>k;
+    ll tempb=b;
+    ll varr=a-f,varl=f,var3;
+    ll var1=varl*2;
+    ll var2=varr*2;
+    var3=var1+var2;
+    while(jc<k)
+    {
+            if(jc%2==0)
+            {
+                tempb=tempb-varl;
+                if(tempb<0)
+                {
+                    ans=-1;
+                    break;
+                }
+                if(tempb<var2)
+                {
+                    if(jc==k-1)
+                    {
+                        if(tempb<varr)
+                        {
+                            ans++;
+                            if(varr>b)
+                            {
+                                ans=-1;
+                                break;
+                            }
+                            jc++;
+                            continue;
+                        }
+                        else
+                        {
+                            jc++;
+                            continue;
+                        }
+                    }
+                    tempb=b;
+                    if(tempb<var2)
+                    {
+                        ans=-1;
+                        break;
+                    }
+                    tempb=b-varr;
+                    ans++;
+                }
+                else
+                {
+                        tempb=tempb-varr;
+                }
+                //cout<<tempb<<endl;
+                jc++;
+            }
+            else
+            {
+                tempb=tempb-varr;
+                if(tempb<0)
+                {
+                    ans=-1;
+                    break;
+                }
+                if(tempb<var1)
+                {
+                    if(jc==k-1)
+                    {
+                        if(tempb<varl)
+                        {
+                            if(varl>b)
+                            {
+                                ans=-1;
+                                break;
+                            }
+                            ans++;
+                            jc++;
+                            continue;
+                        }
+                        else
+                        {
+                            jc++;
+                            continue;
+                        }
+                    }
+                    tempb=b;
+                    if(tempb<var1)
+                    {
+                        ans=-1;
+                        break;
+                    }
+                    tempb=b-varl;
+                    ans++;
+                }
+                else
+                {
+                    tempb=tempb-varl;
+                }
+                //cout<<tempb<<endl;
+                jc++;
+            }
+    }
+    cout<<ans;
+}

@@ -1,0 +1,184 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int a0,b1,i,flag=0;
+        cin>>a0>>b1;
+        string s;
+        cin>>s;
+        int l=a0+b1;
+        for(i=0; i<l; i++)
+        {
+            if(s[i]=='1')
+            {
+                //cout<<i<<endl;
+                b1--;
+                if(b1<0)
+                {
+                    flag=1;
+                    break;
+                }
+            }
+            else if(s[i]=='0')
+            {
+                //cout<<i<<endl;
+                a0--;
+                if(a0<0)
+                {
+                    flag=1;
+                    break;
+                }
+            }
+        }
+        //cout<<a0<<" "<<b1<<endl;
+        if(flag==1)
+        {
+            cout<<"-1"<<endl;
+            continue;
+        }
+        for(i=0; i<l/2; i++)
+        {
+            if(s[i]=='?'||s[l-i-1]=='?')
+            {
+                continue;
+            }
+            if(s[i]!=s[l-i-1])
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+        {
+            cout<<"-1"<<endl;
+            continue;
+        }
+        for(i=0; i<l/2; i++)
+        {
+            if(s[i]=='?'&&s[l-i-1]=='?')
+            {
+                continue;
+            }
+            if(s[i]=='?'||s[l-i-1]=='?')
+            {
+                //cout<<i<<endl;
+                if(s[i]=='?')
+                {
+                    if(s[l-i-1]=='1')
+                    {
+                        s[i]='1';
+                        b1--;
+                        if(b1<0)
+                        {
+                            flag=1;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        s[i]='0';
+                        a0--;
+                        if(a0<0)
+                        {
+                            flag=1;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    if(s[i]=='1')
+                    {
+                        s[l-i-1]='1';
+                        b1--;
+                        if(b1<0)
+                        {
+                            flag=1;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        //cout<<a0<<endl;
+                        s[l-i-1]='0';
+                        a0--;
+                        if(a0<0)
+                        {
+                            flag=1;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        //cout<<a0<<" "<<b1<<endl;
+        //cout<<s<<endl;
+        if(flag==1)
+        {
+            cout<<"-1"<<endl;
+            continue;
+        }
+        for(i=0; i<l/2; i++)
+        {
+            if(s[i]=='?')
+            {
+                if(a0>1)
+                {
+                    s[i]='0';
+                    s[l-i-1]='0';
+                    a0=a0-2;
+                }
+                else if(b1>1)
+                {
+                    s[i]='1';
+                    s[l-i-1]='1';
+                    b1=b1-2;
+                }
+                else
+                {
+                    flag=1;
+                    break;
+                }
+            }
+        }
+        if(flag==1)
+        {
+            //cout<<a0<<" "<<b1<<endl;
+            //cout<<s<<endl;
+            cout<<"-1"<<endl;
+            continue;
+        }
+        if(l%2==0)
+        {
+            cout<<s<<endl;
+        }
+        else
+        {
+            if(s[l/2]=='?')
+            {
+                if(a0==1)
+                {
+                    s[l/2]='0';
+                    cout<<s<<endl;
+                }
+                else if(b1==1)
+                {
+                    s[l/2]='1';
+                    cout<<s<<endl;
+                }
+                else
+                {
+                    cout<<"-1"<<endl;
+                }
+            }
+            else
+            {
+                cout<<s<<endl;
+            }
+        }
+    }
+}
